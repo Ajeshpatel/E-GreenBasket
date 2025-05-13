@@ -102,7 +102,7 @@ const ProductsCard = () => {
       }`}
     >
       <Link to={`/product/${product.id}`} className="block group">
-        <div className={`relative ${isGridView ? "h-60" : "h-48"} w-full overflow-hidden`}>
+        <div className={`relative ${isGridView ? "h-40 md:h-60" : "h-48"} w-full overflow-hidden`}>
           <img
             src={product.image}
             alt={product.name}
@@ -137,18 +137,18 @@ const ProductsCard = () => {
         </div>
       </Link>
       
-      <div className={`${isGridView ? "p-5" : "p-4"}`}>
+      <div className={`${isGridView ? "p-3 md:p-5" : "p-4"}`}>
         <Link to={`/product/${product.id}`} className="block">
-          <h3 className={`${isGridView ? "text-lg" : "text-md"} font-bold text-gray-900 mb-1 hover:text-indigo-600 transition-colors line-clamp-1`}>
+          <h3 className={`${isGridView ? "text-sm md:text-lg" : "text-md"} font-bold text-gray-900 mb-1 hover:text-indigo-600 transition-colors line-clamp-1`}>
             {product.name}
           </h3>
-          <p className={`${isGridView ? "text-sm" : "text-xs"} text-gray-500 mt-1 line-clamp-2`}>
+          <p className={`${isGridView ? "text-xs md:text-sm" : "text-xs"} text-gray-500 mt-1 line-clamp-2`}>
             {product.description}
           </p>
         </Link>
         
-        <div className={`flex justify-between items-center ${isGridView ? "mt-4" : "mt-3"}`}>
-          <span className={`${isGridView ? "text-xl" : "text-lg"} font-extrabold text-gray-900`}>
+        <div className={`flex justify-between items-center ${isGridView ? "mt-2 md:mt-4" : "mt-3"}`}>
+          <span className={`${isGridView ? "text-lg md:text-xl" : "text-lg"} font-extrabold text-gray-900`}>
             ${product.price.toFixed(2)}
           </span>
           
@@ -159,16 +159,16 @@ const ProductsCard = () => {
                 addToCart(product);
               }}
               className={`bg-indigo-600 hover:bg-indigo-700 text-white ${
-                isGridView ? "px-4 py-2" : "px-3 py-1"
-              } rounded-lg ${isGridView ? "text-base" : "text-sm"} font-medium transition-colors flex items-center`}
+                isGridView ? "px-2 py-1 md:px-4 md:py-2" : "px-3 py-1"
+              } rounded-lg ${isGridView ? "text-xs md:text-base" : "text-sm"} font-medium transition-colors flex items-center`}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className={`${isGridView ? "h-5 w-5" : "h-4 w-4"} mr-1`} viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className={`${isGridView ? "h-4 w-4 md:h-5 md:w-5" : "h-4 w-4"} mr-1`} viewBox="0 0 20 20" fill="currentColor">
                 <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
               </svg>
               Add
             </button>
           ) : (
-            <span className={`${isGridView ? "text-sm" : "text-xs"} text-gray-500 font-medium`}>Out of stock</span>
+            <span className={`${isGridView ? "text-xs md:text-sm" : "text-xs"} text-gray-500 font-medium`}>Out of stock</span>
           )}
         </div>
       </div>
@@ -212,8 +212,8 @@ const ProductsCard = () => {
         </div>
         
         {isExpanded ? (
-          // Grid View - 2 products per row
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          // Grid View - Always 2 products per row even on mobile
+          <div className="grid grid-cols-2 gap-4 md:gap-8">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} isGridView={true} />
             ))}
@@ -267,7 +267,7 @@ const ProductsCard = () => {
         </div>
 
         {/* Product grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-4 md:gap-8">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} isGridView={true} />
           ))}
