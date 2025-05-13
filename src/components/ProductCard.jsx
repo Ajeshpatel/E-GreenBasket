@@ -8,8 +8,8 @@ import {
   ExclamationCircleIcon,
   ChevronRightIcon,
   ChevronLeftIcon,
-  // ViewListIcon,
-  // ViewGridIcon
+  ChevronUpIcon,
+  ChevronDownIcon,
 } from '@heroicons/react/24/solid';
 
 const ProductsCard = () => {
@@ -18,7 +18,7 @@ const ProductsCard = () => {
   const [productsByCategory, setProductsByCategory] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [viewMode, setViewMode] = useState('carousel'); // 'carousel' or 'grid'
+  const [expandedCategories, setExpandedCategories] = useState([]);
   const [categories, setCategories] = useState([
     { id: 1, name: 'Electronics', icon: '🖥️', slug: 'electronics' },
     { id: 2, name: 'Clothing', icon: '👕', slug: 'clothing' },
@@ -77,9 +77,18 @@ const ProductsCard = () => {
     fetchData();
   }, [categories]);
 
-  // Toggle view mode between carousel and grid
-  const toggleViewMode = () => {
-    setViewMode(viewMode === 'carousel' ? 'grid' : 'carousel');
+  // Toggle category expansion
+  const toggleCategoryExpansion = (category) => {
+    setExpandedCategories(prev => 
+      prev.includes(category) 
+        ? prev.filter(cat => cat !== category) 
+        : [...prev, category]
+    );
+  };
+
+  // Check if a category is expanded
+  const isCategoryExpanded = (category) => {
+    return expandedCategories.includes(category);
   };
 
   // Single product card component - used in both carousel and grid views
@@ -169,6 +178,7 @@ const ProductsCard = () => {
   // Category carousel section component
   const CategorySection = ({ category, title, icon }) => { 
     const products = productsByCategory[category] || [];
+    const isExpanded = isCategoryExpanded(category);
     
     if (products.length === 0) return null;
     
@@ -180,36 +190,36 @@ const ProductsCard = () => {
             <h2 className="text-xl font-bold text-gray-900">{title}</h2>
             <span className="ml-3 text-sm text-gray-500">({products.length} products)</span>
           </div>
-          <div className="flex items-center ">
-            <button
-              onClick={toggleViewMode}
-              className="mr-4 text-gray-500 hover:text-indigo-600 transition-colors"
-              title={viewMode === 'carousel' ? 'Switch to grid view' : 'Switch to carousel view'}
-            >
-              {/* {viewMode === 'carousel' ? (
-                <ViewGridIcon className="h-5 w-5" />
-              ) : (
-                <ViewListIcon className="h-5 w-5" />
-              )} */}
-            </button>
-            <button 
-              onClick={() => {
-                setViewMode('grid');
-                // If already on the same category, just switch view mode
-                if (selectedCategory !== category && category !== 'all') {
-                  setSelectedCategory(category);
-                }
-              }}
-              className="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center"
-            >
-              View More
-              <ChevronRightIcon className="h-4 w-4 ml-1" />
-            </button>
+          <div className="flex items-center">
+            {isExpanded ? (
+              <button 
+                onClick={() => toggleCategoryExpansion(category)}
+                className="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center"
+              >
+                View Less
+                <ChevronUpIcon className="h-4 w-4 ml-1" />
+              </button>
+            ) : (
+              <button 
+                onClick={() => toggleCategoryExpansion(category)}
+                className="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center"
+              >
+                View More
+                <ChevronDownIcon className="h-4 w-4 ml-1" />
+              </button>
+            )}
           </div>
         </div>
         
-        {viewMode === 'carousel' ? (
-          // Carousel View - Removed scroll buttons
+        {isExpanded ? (
+          // Grid View - 2 products per row
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} isGridView={true} />
+            ))}
+          </div>
+        ) : (
+          // Carousel View - Horizontal scrollable
           <div className="relative">            
             <div 
               id={`scroll-container-${category}`}
@@ -220,13 +230,6 @@ const ProductsCard = () => {
                 <ProductCard key={product.id} product={product} isGridView={false} />
               ))}
             </div>
-          </div>
-        ) : (
-          // Grid View
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} isGridView={true} />
-            ))}
           </div>
         )}
       </div>
@@ -241,7 +244,7 @@ const ProductsCard = () => {
     
     return (
       <div>
-        {/* Product Count and View Toggle */}
+        {/* Product Count and Back Button */}
         <div className="flex justify-between items-center mb-6">
           <div className="text-sm text-gray-600">
             Showing <span className="font-medium">{products.length}</span> {products.length === 1 ? 'product' : 'products'}
@@ -252,22 +255,6 @@ const ProductsCard = () => {
             )}
           </div>
           <div className="flex items-center space-x-4">
-            <button
-              onClick={toggleViewMode}
-              className="flex items-center text-sm text-gray-600 hover:text-indigo-600"
-            >
-              {/* {viewMode === 'carousel' ? (
-                <>
-                  <ViewGridIcon className="h-5 w-5 mr-1" />
-                  Grid View
-                </>
-              ) : (
-                <>
-                  <ViewListIcon className="h-5 w-5 mr-1" />
-                  Carousel View
-                </>
-              )} */}
-            </button>
             {selectedCategory !== 'all' && (
               <button
                 onClick={() => setSelectedCategory('all')}
@@ -280,7 +267,7 @@ const ProductsCard = () => {
         </div>
 
         {/* Product grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} isGridView={true} />
           ))}
@@ -389,59 +376,47 @@ const ProductsCard = () => {
           </div>
         ) : (
           <>
-            {viewMode === 'grid' ? (
-              // Full grid view display
+            {selectedCategory !== 'all' ? (
+              // Show only selected category in grid format
               <ProductGrid />
             ) : (
-              // Category carousel sections display
+              // Show all categories
               <div>
-                {selectedCategory !== 'all' ? (
-                  // Show only selected category
-                  <CategorySection 
-                    category={selectedCategory} 
-                    title={categories.find(c => c.slug === selectedCategory)?.name || 'Products'} 
-                    icon={categories.find(c => c.slug === selectedCategory)?.icon || '🛒'} 
-                  />
-                ) : (
-                  // Show all categories
-                  <>
-                    {/* "All Products" section first */}
-                    <CategorySection category="all" title="All Products" icon="🛒" />
-                    
-                    {/* Individual category sections */}
-                    {categories.map(category => (
-                      <CategorySection 
-                        key={category.id}
-                        category={category.slug} 
-                        title={category.name} 
-                        icon={category.icon} 
-                      />
-                    ))}
-                  </>
-                )}
+                {/* "All Products" section first */}
+                <CategorySection category="all" title="All Products" icon="🛒" />
                 
-                {/* Empty state - only shown when a category has no products */}
-                {selectedCategory !== 'all' && 
-                productsByCategory[selectedCategory] && 
-                productsByCategory[selectedCategory].length === 0 && (
-                  <div className="bg-white rounded-xl shadow-sm p-12 text-center">
-                    <div className="mx-auto h-24 w-24 text-gray-400 mb-6">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                      </svg>
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
-                    <p className="text-gray-500 mb-6 max-w-md mx-auto">
-                      We couldn't find any products in the {categories.find(c => c.slug === selectedCategory)?.name} category. Try selecting a different category.
-                    </p>
-                    <button
-                      onClick={() => setSelectedCategory('all')}
-                      className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-                    >
-                      View all products
-                    </button>
-                  </div>
-                )}
+                {/* Individual category sections */}
+                {categories.map(category => (
+                  <CategorySection 
+                    key={category.id}
+                    category={category.slug} 
+                    title={category.name} 
+                    icon={category.icon} 
+                  />
+                ))}
+              </div>
+            )}
+                
+            {/* Empty state - only shown when a category has no products */}
+            {selectedCategory !== 'all' && 
+            productsByCategory[selectedCategory] && 
+            productsByCategory[selectedCategory].length === 0 && (
+              <div className="bg-white rounded-xl shadow-sm p-12 text-center">
+                <div className="mx-auto h-24 w-24 text-gray-400 mb-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+                <p className="text-gray-500 mb-6 max-w-md mx-auto">
+                  We couldn't find any products in the {categories.find(c => c.slug === selectedCategory)?.name} category. Try selecting a different category.
+                </p>
+                <button
+                  onClick={() => setSelectedCategory('all')}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                >
+                  View all products
+                </button>
               </div>
             )}
           </>
