@@ -1,0 +1,623 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Premium Wireless Headphones",
+      "price": 249.99,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.8,
+      "inStock": true,
+      "isNew": true,
+      "description": "Noise-cancelling wireless headphones with 30-hour battery life"
+    },
+    {
+      "id": 2,
+      "name": "Smart Pro Watch Series X",
+      "price": 399.99,
+      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.9,
+      "inStock": true,
+      "isFeatured": true,
+      "description": "Advanced smartwatch with health monitoring and GPS"
+    },
+    {
+      "id": 3,
+      "name": "Bluetooth Speaker Box Mini",
+      "price": 59.99,
+      "image": "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Portable Bluetooth speaker with deep bass and stereo sound"
+    },
+    {
+      "id": 4,
+      "name": "Wireless Charging Pad",
+      "price": 29.99,
+      "image": "https://images.unsplash.com/photo-1587033411394-081a8d165f69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.1,
+      "inStock": true,
+      "description": "Fast wireless charging pad for smartphones"
+    },
+    {
+      "id": 5,
+      "name": "HD Smart LED TV 50\"",
+      "price": 549.99,
+      "image": "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "50-inch Smart TV with 4K resolution and streaming apps"
+    },
+    {
+      "id": 6,
+      "name": "Gaming Mouse RGB Pro",
+      "price": 69.99,
+      "image": "https://images.unsplash.com/photo-1527814050087-3793815479db?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.7,
+      "inStock": true,
+      "description": "High precision gaming mouse with customizable RGB lighting"
+    },
+    {
+      "id": 7,
+      "name": "Mechanical Keyboard Max",
+      "price": 119.99,
+      "image": "https://images.unsplash.com/photo-1601445638532-3c6f6c3aa1d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.9,
+      "inStock": true,
+      "description": "Durable mechanical keyboard with blue switches"
+    },
+    {
+      "id": 8,
+      "name": "Smart Home Camera 360°",
+      "price": 89.99,
+      "image": "https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.4,
+      "inStock": true,
+      "description": "Wireless security camera with night vision and motion detection"
+    },
+    {
+      "id": 9,
+      "name": "USB-C Hub Multiport",
+      "price": 34.99,
+      "image": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.3,
+      "inStock": true,
+      "description": "7-in-1 USB-C hub with HDMI, USB, SD card reader"
+    },
+    {
+      "id": 10,
+      "name": "Noise-Canceling Earbuds",
+      "price": 89.99,
+      "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "electronics",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "In-ear earbuds with ANC and touch controls"
+    },
+    {
+      "id": 11,
+      "name": "Organic Cotton T-Shirt",
+      "price": 29.99,
+      "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.2,
+      "inStock": true,
+      "description": "100% organic cotton, eco-friendly fabric"
+    },
+    {
+      "id": 12,
+      "name": "Slim Fit Jeans",
+      "price": 49.99,
+      "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Comfortable slim fit jeans in dark wash"
+    },
+    {
+      "id": 13,
+      "name": "Winter Puffer Jacket",
+      "price": 119.99,
+      "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "Warm puffer jacket with hood for cold weather"
+    },
+    {
+      "id": 14,
+      "name": "Athletic Sports Shorts",
+      "price": 24.99,
+      "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.3,
+      "inStock": true,
+      "description": "Moisture-wicking sports shorts for running or gym"
+    },
+    {
+      "id": 15,
+      "name": "Summer Floral Dress",
+      "price": 39.99,
+      "image": "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.7,
+      "inStock": true,
+      "description": "Lightweight floral dress for summer days"
+    },
+    {
+      "id": 16,
+      "name": "Classic Polo Shirt",
+      "price": 34.99,
+      "image": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.4,
+      "inStock": true,
+      "description": "Breathable polo shirt for casual or business wear"
+    },
+    {
+      "id": 17,
+      "name": "Hoodie with Zipper",
+      "price": 59.99,
+      "image": "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Soft and cozy hoodie with front zipper"
+    },
+    {
+      "id": 18,
+      "name": "Formal Blazer",
+      "price": 149.99,
+      "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.8,
+      "inStock": true,
+      "description": "Stylish formal blazer for office and events"
+    },
+    {
+      "id": 19,
+      "name": "Men's Chino Pants",
+      "price": 54.99,
+      "image": "https://images.unsplash.com/photo-1595341595379-cf0f13c5dd0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.2,
+      "inStock": true,
+      "description": "Comfort-fit chinos suitable for daily wear"
+    },
+    {
+      "id": 20,
+      "name": "Ladies Leggings Pack",
+      "price": 44.99,
+      "image": "https://images.unsplash.com/photo-1583744946564-b52d01e2da64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "clothing",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "Set of 2 stretchable and breathable leggings"
+    },
+    {
+      "id": 21,
+      "name": "Indoor Plant Pot Set",
+      "price": 39.99,
+      "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Ceramic pots ideal for indoor plants and décor"
+    },
+    {
+      "id": 22,
+      "name": "LED Fairy Lights",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1514464750060-00e6e34c8b8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.7,
+      "inStock": true,
+      "description": "Decorative string lights for bedrooms and balconies"
+    },
+    {
+      "id": 23,
+      "name": "Bamboo Cutting Board",
+      "price": 24.99,
+      "image": "https://images.unsplash.com/photo-1556910638-a9a79394c2ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "Eco-friendly bamboo board for chopping vegetables"
+    },
+    {
+      "id": 24,
+      "name": "Watering Can 1.5L",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1598940603846-a1edd0ef2574?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.3,
+      "inStock": true,
+      "description": "Plastic watering can with long spout"
+    },
+    {
+      "id": 25,
+      "name": "Cushion Cover Set",
+      "price": 29.99,
+      "image": "https://images.unsplash.com/photo-1579656592043-a20e25a4aa4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.2,
+      "inStock": true,
+      "description": "Pack of 4 decorative cushion covers"
+    },
+    {
+      "id": 26,
+      "name": "Foldable Storage Box",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.4,
+      "inStock": true,
+      "description": "Fabric storage box for organizing closets"
+    },
+    {
+      "id": 27,
+      "name": "Non-slip Doormat",
+      "price": 17.99,
+      "image": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Durable welcome mat with anti-slip backing"
+    },
+    {
+      "id": 28,
+      "name": "LED Table Lamp",
+      "price": 39.99,
+      "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.8,
+      "inStock": true,
+      "description": "Touch control table lamp with adjustable brightness"
+    },
+    {
+      "id": 29,
+      "name": "Aromatic Scented Candles",
+      "price": 27.99,
+      "image": "https://images.unsplash.com/photo-1580327344181-c1163234e5a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.7,
+      "inStock": true,
+      "description": "Set of 3 soy wax candles with natural aromas"
+    },
+    {
+      "id": 30,
+      "name": "Hanging Wall Planter",
+      "price": 32.99,
+      "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "home-garden",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "Macrame planter for indoor wall hanging"
+    },
+    {
+      "id": 31,
+      "name": "Hydrating Face Serum",
+      "price": 24.99,
+      "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.7,
+      "inStock": true,
+      "description": "Vitamin C infused serum for glowing skin"
+    },
+    {
+      "id": 32,
+      "name": "Matte Lipstick Set",
+      "price": 29.99,
+      "image": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4f02?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "Set of 5 long-lasting matte lipsticks"
+    },
+    {
+      "id": 33,
+      "name": "Waterproof Mascara",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.4,
+      "inStock": true,
+      "description": "Smudge-proof mascara for voluminous lashes"
+    },
+    {
+      "id": 34,
+      "name": "Natural Face Cleanser",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Gentle daily cleanser with aloe vera"
+    },
+    {
+      "id": 35,
+      "name": "BB Cream SPF 30",
+      "price": 17.99,
+      "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.3,
+      "inStock": true,
+      "description": "All-in-one BB cream with sun protection"
+    },
+    {
+      "id": 36,
+      "name": "Hair Repair Oil",
+      "price": 21.99,
+      "image": "https://images.unsplash.com/photo-1608248544923-6df56a6219f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "Nourishing oil for dry and damaged hair"
+    },
+    {
+      "id": 37,
+      "name": "Exfoliating Scrub",
+      "price": 15.99,
+      "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.2,
+      "inStock": true,
+      "description": "Natural walnut scrub for deep cleansing"
+    },
+    {
+      "id": 38,
+      "name": "Makeup Brush Set",
+      "price": 34.99,
+      "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.8,
+      "inStock": true,
+      "description": "Professional 10-piece makeup brush kit"
+    },
+    {
+      "id": 39,
+      "name": "Aloe Vera Gel",
+      "price": 11.99,
+      "image": "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.7,
+      "inStock": true,
+      "description": "Soothing multipurpose aloe vera gel"
+    },
+    {
+      "id": 40,
+      "name": "Nail Polish Pack",
+      "price": 22.99,
+      "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Set of 6 vibrant long-lasting nail polishes"
+    },
+    {
+      "id": 41,
+      "name": "Charcoal Face Mask",
+      "price": 13.99,
+      "image": "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.4,
+      "inStock": true,
+      "description": "Detoxifying face mask with activated charcoal"
+    },
+    {
+      "id": 42,
+      "name": "Moisturizing Body Lotion",
+      "price": 18.99,
+      "image": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "Deep moisture lotion for dry skin"
+    },
+    {
+      "id": 43,
+      "name": "Anti-Aging Night Cream",
+      "price": 39.99,
+      "image": "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.7,
+      "inStock": true,
+      "description": "Night cream with retinol and collagen"
+    },
+    {
+      "id": 44,
+      "name": "Face Roller & Gua Sha Set",
+      "price": 25.99,
+      "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Rose quartz roller and gua sha for facial massage"
+    },
+    {
+      "id": 45,
+      "name": "Tinted Lip Balm",
+      "price": 9.99,
+      "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "beauty",
+      "rating": 4.3,
+      "inStock": true,
+      "description": "Hydrating lip balm with a hint of color"
+    },
+    {
+      "id": 46,
+      "name": "Adjustable Dumbbell Set",
+      "price": 89.99,
+      "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "sports",
+      "rating": 4.8,
+      "inStock": true,
+      "description": "Adjustable weight dumbbell set for home workouts"
+    },
+    {
+      "id": 47,
+      "name": "Yoga Mat with Strap",
+      "price": 29.99,
+      "image": "https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "sports",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "Non-slip yoga mat with carrying strap"
+    },
+    {
+      "id": 48,
+      "name": "Resistance Bands Set",
+      "price": 24.99,
+      "image": "https://images.unsplash.com/photo-1596357395217-80de13130e92?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "sports",
+      "rating": 4.7,
+      "inStock": true,
+      "description": "5-level resistance bands for full-body workouts"
+    },
+    {
+      "id": 49,
+      "name": "Cycling Helmet",
+      "price": 59.99,
+      "image": "https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "sports",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Lightweight helmet with adjustable fit and ventilation"
+    },
+    {
+      "id": 50,
+      "name": "Sports Water Bottle",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "sports",
+      "rating": 4.3,
+      "inStock": true,
+      "description": "BPA-free water bottle with time marker"
+    },
+    {
+      "id": 51,
+      "name": "Men's Running Shorts",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "sports",
+      "rating": 4.4,
+      "inStock": true,
+      "description": "Lightweight and breathable running shorts"
+    },
+    {
+      "id": 52,
+      "name": "Basketball",
+      "price": 34.99,
+      "image": "https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "sports",
+      "rating": 4.6,
+      "inStock": true,
+      "description": "Official size indoor/outdoor basketball"
+    },
+    {
+      "id": 53,
+      "name": "Skipping Rope",
+      "price": 12.99,
+      "image": "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "sports",
+      "rating": 4.5,
+      "inStock": true,
+      "description": "Adjustable speed skipping rope with foam handles"
+    },
+    {
+      "id": 54,
+      "name": "Atomic Habits by James Clear",
+      "price": 18.99,
+      "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "books",
+      "rating": 4.9,
+      "inStock": true,
+      "description": "An easy & proven way to build good habits and break bad ones"
+    },
+    {
+      "id": 55,
+      "name": "The Alchemist by Paulo Coelho",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "books",
+      "rating": 4.8,
+      "inStock": true,
+      "description": "A philosophical story about following your dreams"
+    },
+    {
+      "id": 56,
+      "name": "Deep Work by Cal Newport",
+      "price": 17.49,
+      "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "books",
+      "rating": 4.7,
+      "inStock": true,
+      "description": "Rules for focused success in a distracted world"
+    },
+    {
+      "id": 57,
+      "name": "Becoming by Michelle Obama",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "books",
+      "rating": 4.9,
+      "inStock": true,
+      "description": "A deeply personal memoir by the former First Lady"
+    },
+    {
+      "id": 58,
+      "name": "Sapiens: A Brief History of Humankind",
+      "price": 21.99,
+      "image": "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "category": "books",
+      "rating": 4.8,
+      "inStock": true,
+      "description": "Exploration of human evolution and history by Yuval Noah Harari"
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "name": "All Products",
+      "icon": "ShoppingBagIcon"
+    },
+    {
+      "id": "electronics",
+      "name": "Electronics",
+      "icon": "BoltIcon"
+    },
+    {
+      "id": "clothing",
+      "name": "Clothing",
+      "icon": "ShirtIcon"
+    },
+    {
+      "id": "home-garden",
+      "name": "Home & Garden",
+      "icon": "HomeIcon"
+    },
+    {
+      "id": "beauty",
+      "name": "Beauty",
+      "icon": "SparklesIcon"
+    },
+    {
+      "id": "sports",
+      "name": "Sports",
+      "icon": "TrophyIcon"
+    },
+    {
+      "id": "books",
+      "name": "Books",
+      "icon": "BookOpenIcon"
+    }
+  ]
+}
