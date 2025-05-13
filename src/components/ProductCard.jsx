@@ -213,7 +213,8 @@ const ProductsCard = () => {
         
         {isExpanded ? (
           // Grid View - Always 2 products per row even on mobile
-          <div className="grid grid-cols-2 gap-4 md:gap-8">
+          <div className="grid grid-cols-2 gap-4 md:gap-8 md:grid-cols-4">
+
             {products.map((product) => (
               <ProductCard key={product.id} product={product} isGridView={true} />
             ))}
