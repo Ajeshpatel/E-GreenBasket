@@ -38,7 +38,7 @@ const ProductsCard = () => {
         // Simulate loading delay to ensure loading state is visible
         setTimeout(async () => {
           try {
-            const response = await fetch('./public/data/products.json');
+            const response = await fetch('/data/products.json');
             if (!response.ok) {
               throw new Error('Failed to fetch products');
             }
