@@ -172,16 +172,6 @@ const ProductsCard = () => {
     
     if (products.length === 0) return null;
     
-    const scrollLeft = () => {
-      const container = document.getElementById(`scroll-container-${category}`);
-      container.scrollBy({ left: -300, behavior: 'smooth' });
-    };
-    
-    const scrollRight = () => {
-      const container = document.getElementById(`scroll-container-${category}`);
-      container.scrollBy({ left: 300, behavior: 'smooth' });
-    };
-    
     return (
       <div className="mb-12">
         <div className="flex justify-between items-center mb-4">
@@ -190,7 +180,7 @@ const ProductsCard = () => {
             <h2 className="text-xl font-bold text-gray-900">{title}</h2>
             <span className="ml-3 text-sm text-gray-500">({products.length} products)</span>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <button
               onClick={toggleViewMode}
               className="mr-4 text-gray-500 hover:text-indigo-600 transition-colors"
@@ -219,26 +209,8 @@ const ProductsCard = () => {
         </div>
         
         {viewMode === 'carousel' ? (
-          // Carousel View
-          <div className="relative">
-            {products.length > 3 && (
-              <>
-                <button 
-                  onClick={scrollLeft}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100"
-                >
-                  <ChevronLeftIcon className="h-5 w-5 text-gray-700" />
-                </button>
-                
-                <button 
-                  onClick={scrollRight}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100"
-                >
-                  <ChevronRightIcon className="h-5 w-5 text-gray-700" />
-                </button>
-              </>
-            )}
-            
+          // Carousel View - Removed scroll buttons
+          <div className="relative">            
             <div 
               id={`scroll-container-${category}`}
               className="flex overflow-x-auto pb-4 hide-scrollbar"
