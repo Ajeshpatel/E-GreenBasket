@@ -341,7 +341,7 @@ const ProductsCard = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <div className="relative m-4 rounded-2xl overflow-hidden text-white py-16 px-4 sm:px-6 lg:px-8">
+      <div className="relative  rounded-2xl overflow-hidden text-white py-16 px-4 sm:px-6 lg:px-8">
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -360,7 +360,7 @@ const ProductsCard = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="py-12">
         {/* Error State */}
         {error && (
           <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8">
@@ -378,10 +378,10 @@ const ProductsCard = () => {
         )}
 
         {/* Category Selection */}
-        <div className="bg-white p-6 rounded-xl shadow-sm mb-8">
+        <div className="bg-white p-4 rounded-xl shadow-sm mb-8">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Shop by Category</h2>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {/* All Categories */}
             <button
               onClick={() => setSelectedCategory('all')}
