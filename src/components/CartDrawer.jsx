@@ -29,7 +29,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
               <div className="text-center py-10">
                 <p className="text-gray-500">Your cart is empty</p>
                 <Link 
-                  to="/products" 
+                  to="/shop" 
                   onClick={onClose}
                   className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
                 >
