@@ -13,17 +13,31 @@ const CartDrawer = ({ isOpen, onClose }) => {
   } = useCart()
 
   return (
-    <div className={`fixed inset-0 z-50 ${isOpen ? 'block' : 'hidden'}`}>
-      <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose}></div>
-      <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl">
+    <div 
+      className={`fixed inset-0 z-[100] ${isOpen ? 'block' : 'hidden'}`}
+      style={{ transition: 'opacity 0.3s ease-in-out' }}
+    >
+      {/* Background with blur effect only, without dark overlay */}
+      <div 
+        className={`absolute inset-0 backdrop-blur-sm ${isOpen ? 'opacity-100' : 'opacity-0'}`} 
+        onClick={onClose}
+        style={{ transition: 'opacity 0.3s ease-in-out' }}
+      ></div>
+
+      {/* Cart Drawer */}
+      <div 
+        className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}
+      >
         <div className="flex flex-col h-full">
+          {/* Header */}
           <div className="flex justify-between items-center p-4 border-b">
             <h2 className="text-xl font-bold">Your Cart ({cartCount})</h2>
-            <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100">
+            <button onClick={onClose} className="p-2 rounded-full hover:bg-gray-100">
               <XMarkIcon className="h-6 w-6" />
             </button>
           </div>
           
+          {/* Cart Items */}
           <div className="flex-grow overflow-y-auto p-4">
             {cart.length === 0 ? (
               <div className="text-center py-10">
@@ -56,8 +70,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                               {item.name}
                             </Link>
                           </h3>
-                          <p className="ml-4 text-sm font-medium">₹{Number(item.price).toFixed(2)}
-</p>
+                          <p className="ml-4 text-sm font-medium">₹{Number(item.price).toFixed(2)}</p>
                         </div>
                         
                         <div className="flex flex-1 items-end justify-between text-sm">
@@ -93,11 +106,12 @@ const CartDrawer = ({ isOpen, onClose }) => {
             )}
           </div>
           
+          {/* Subtotal and Checkout */}
           {cart.length > 0 && (
             <div className="border-t p-4">
               <div className="flex justify-between text-lg font-medium mb-4">
                 <span>Subtotal</span>
-                <span>${cartTotal.toFixed(2)}</span>
+                <span>₹{cartTotal.toFixed(2)}</span>
               </div>
               <div className="flex space-x-2">
                 <button
