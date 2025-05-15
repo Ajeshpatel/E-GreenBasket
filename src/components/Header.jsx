@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingCartIcon, MagnifyingGlassIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useCart } from '../context/CartContext';
+import SearchBar from '../components/SearchBar'; // Import the SearchBar component
 
 const Header = ({ onCartClick }) => {
   const { cartCount } = useCart();
@@ -9,8 +10,30 @@ const Header = ({ onCartClick }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [products, setProducts] = useState([]); // Added state for products
+  const [loading, setLoading] = useState(true); // Added loading state
   const searchInputRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // Fetch products for search functionality
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/data/products.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data.products || []);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     if (searchOpen && searchInputRef.current) {
@@ -29,7 +52,8 @@ const Header = ({ onCartClick }) => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      console.log('Searching for:', searchQuery);
+      // Navigate to search results page with the query
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery('');
       setSearchOpen(false);
     }
@@ -50,24 +74,15 @@ const Header = ({ onCartClick }) => {
           {/* Desktop Center Area - Switches between Nav and Search */}
           <div className="hidden md:flex flex-1 justify-center mx-4">
             {searchOpen ? (
-              <form onSubmit={handleSearchSubmit} className="w-full max-w-screen-md">
-                <div className="relative">
-                  <input
-                    ref={searchInputRef}
-                    type="text"
-                    placeholder="Search products..."
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                  <button
-                    type="submit"
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-blue-600"
-                  >
-                    <MagnifyingGlassIcon className="h-5 w-5" />
-                  </button>
-                </div>
-              </form>
+              <div className="w-full max-w-screen-md">
+                {loading ? (
+                  <div className="w-full px-4 py-2 border border-gray-300 rounded-md">
+                    Loading search...
+                  </div>
+                ) : (
+                  <SearchBar products={products} />
+                )}
+              </div>
             ) : (
               <nav className="flex items-center space-x-1">
                 <Link 
@@ -107,8 +122,7 @@ const Header = ({ onCartClick }) => {
               )}
             </button>
 
-
-             {/* Mobile Search Button (only visible on mobile) */}
+            {/* Mobile Search Button (only visible on mobile) */}
             <button 
               onClick={() => setSearchOpen(!searchOpen)}
               className="md:hidden p-2 text-gray-600 hover:text-gray-900"
@@ -135,10 +149,7 @@ const Header = ({ onCartClick }) => {
               )}
             </button>
 
-           
-
-           
-             {/* Mobile Menu Button */}
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 text-gray-600 hover:text-gray-900"
@@ -165,7 +176,7 @@ const Header = ({ onCartClick }) => {
               </Link>
               <Link 
                 to="/shop" 
-                className={`px-4 py-2 rounded-md font-medium ${location.pathname.startsWith('/products') ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-900'}`}
+                className={`px-4 py-2 rounded-md font-medium ${location.pathname.startsWith('/shop') ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-900'}`}
               >
                 Shop
               </Link>
@@ -182,24 +193,13 @@ const Header = ({ onCartClick }) => {
         {/* Mobile Search Bar - Appears below */}
         {searchOpen && (
           <div className="md:hidden py-3">
-            <form onSubmit={handleSearchSubmit} className="w-full">
-              <div className="relative">
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder="Search products..."
-                  className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <button
-                  type="submit"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-blue-600"
-                >
-                  <MagnifyingGlassIcon className="h-5 w-5" />
-                </button>
+            {loading ? (
+              <div className="w-full px-4 py-2 border border-gray-300 rounded-md">
+                Loading search...
               </div>
-            </form>
+            ) : (
+              <SearchBar products={products} />
+            )}
           </div>
         )}
       </div>

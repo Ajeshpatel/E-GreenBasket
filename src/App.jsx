@@ -10,6 +10,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import Header from "./components/Header";
 import CartDrawer from "./components/CartDrawer";
+import SearchPage from "./pages/SearchPage"; // Updated import path
 
 function App() {
   // Global cart drawer state
@@ -75,6 +76,17 @@ function App() {
             <>
               <Header onCartClick={handleCartOpen} />
               <AboutPage />
+            </>
+          }
+        />
+
+        {/* Search Page with Header */}
+        <Route
+          path="search"
+          element={
+            <>
+              <Header onCartClick={handleCartOpen} />
+              <SearchPage />
             </>
           }
         />

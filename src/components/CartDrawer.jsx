@@ -1,6 +1,7 @@
-import { XMarkIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { useCart } from '../context/CartContext'
-import { Link } from 'react-router-dom'
+import { XMarkIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { useCart } from '../context/CartContext';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const CartDrawer = ({ isOpen, onClose }) => {
   const { 
@@ -10,23 +11,33 @@ const CartDrawer = ({ isOpen, onClose }) => {
     removeFromCart, 
     updateQuantity,
     clearCart 
-  } = useCart()
+  } = useCart();
+  
+  // Prevent scrolling when cart is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   return (
     <div 
       className={`fixed inset-0 z-[100] ${isOpen ? 'block' : 'hidden'}`}
-      style={{ transition: 'opacity 0.3s ease-in-out' }}
     >
-      {/* Background with blur effect only, without dark overlay */}
+      {/* Background with blur effect */}
       <div 
-        className={`absolute inset-0 backdrop-blur-sm ${isOpen ? 'opacity-100' : 'opacity-0'}`} 
+        className={`absolute inset-0 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`} 
         onClick={onClose}
-        style={{ transition: 'opacity 0.3s ease-in-out' }}
       ></div>
 
       {/* Cart Drawer */}
       <div 
-        className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}
+        className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
@@ -133,7 +144,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartDrawer
+export default CartDrawer;
