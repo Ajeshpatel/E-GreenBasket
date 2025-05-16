@@ -1,14 +1,26 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-// import { Link } from "react-router-dom";
-// import { useNavigate } from 'react-router-dom';
+import { useCart } from "../context/CartContext";
+import { TrashIcon } from "@heroicons/react/24/outline";
 
 const Checkout = () => {
+  const { cart, cartTotal, removeFromCart } = useCart();
   const [showPriceDetails, setShowPriceDetails] = useState(true);
-
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [isApplied, setIsApplied] = useState(false);
+  
+  // Calculate discount percentages
+  const couponDiscount = isApplied ? cartTotal * 0.15 : 0; // 15% discount for PAYDAY15
+  const onlinePaymentDiscount = cartTotal * 0.05 > 100 ? 100 : cartTotal * 0.05; // 5% up to ₹100
+  const shippingCost = cartTotal > 699 ? 0 : 50; // Free shipping for orders > ₹699
+  const gstAmount = ((cartTotal - couponDiscount) * 0.18) / 1.18; // 18% GST (included in price)
+  
+  // Calculate grand total
+  const grandTotal = cartTotal - couponDiscount - onlinePaymentDiscount + shippingCost;
+  
+  // Calculate savings
+  const totalSavings = couponDiscount + onlinePaymentDiscount;
 
   const handleApply = () => {
     if (isApplied) {
@@ -25,6 +37,7 @@ const Checkout = () => {
     setAppliedCoupon("PAYDAY15");
     setIsApplied(true);
   };
+  
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Local Top Navigation */}
@@ -39,7 +52,7 @@ const Checkout = () => {
         </div>
         <div>
           <img
-            src="./public/himalixirlogomain.png"
+            src="/api/placeholder/200/50"
             alt="Company Logo"
             className="h-13"
           />
@@ -49,11 +62,10 @@ const Checkout = () => {
       {/* Checkout Content */}
       <div className="">
         {/* Split Layout Section */}
-        <div className=" ">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-0">
+        <div className="">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-4 p-4">
             {/* Left 50% Section */}
-
-            <div className="w-full md:w-1/2 bg-white p-0 rounded-lg ">
+            <div className="w-full md:w-1/2 bg-white p-0 rounded-lg border border-gray-200 shadow-sm">
               <div className="flex-1 bg-gray-50 p-6 rounded-lg">
                 <h1 className="text-2xl font-semibold mb-4">
                   Already have an account?{" "}
@@ -241,23 +253,27 @@ const Checkout = () => {
                   </p>
                   <div className="flex justify-center gap-6 mt-4 flex-wrap">
                     <img
-                      src="./src/assets/paytm.png"
+                      src="/api/placeholder/80/30"
                       alt="Paytm"
                       className="h-8"
                     />
-                    <img src="./src/assets/upi.png" alt="UPI" className="h-8" />
+                    <img 
+                      src="/api/placeholder/80/30" 
+                      alt="UPI" 
+                      className="h-8" 
+                    />
                     <img
-                      src="./src/assets/google pay.png"
+                      src="/api/placeholder/80/30"
                       alt="GPay"
                       className="h-8"
                     />
                     <img
-                      src="./src/assets/visa.png"
+                      src="/api/placeholder/80/30"
                       alt="Visa"
                       className="h-8"
                     />
                     <img
-                      src="./src/assets/rupay.png"
+                      src="/api/placeholder/80/30"
                       alt="Rupay"
                       className="h-8"
                     />
@@ -268,7 +284,7 @@ const Checkout = () => {
                   <div className="flex justify-between flex-wrap gap-4 text-center">
                     <div className="flex flex-col items-center">
                       <img
-                        src="./src/assets/delivery.png"
+                        src="/api/placeholder/40/40"
                         alt="Delivery"
                         className="h-10 w-10"
                       />
@@ -278,7 +294,7 @@ const Checkout = () => {
                     </div>
                     <div className="flex flex-col items-center">
                       <img
-                        src="./src/assets/hand.png"
+                        src="/api/placeholder/40/40"
                         alt="Refunds"
                         className="h-10 w-10"
                       />
@@ -288,7 +304,7 @@ const Checkout = () => {
                     </div>
                     <div className="flex flex-col items-center">
                       <img
-                        src="./src/assets/tree.png"
+                        src="/api/placeholder/40/40"
                         alt="Natural"
                         className="h-10 w-10"
                       />
@@ -298,7 +314,7 @@ const Checkout = () => {
                     </div>
                     <div className="flex flex-col items-center">
                       <img
-                        src="./src/assets/user.png"
+                        src="/api/placeholder/40/40"
                         alt="Users"
                         className="h-10 w-10"
                       />
@@ -312,23 +328,100 @@ const Checkout = () => {
             </div>
 
             {/* Right 50% Section */}
-
-            <div className="w-full md:w-1/2 bg-white p-0 rounded-lg ">
-              <div className="w-full  bg-white p-6 rounded-lg shadow-md">
+            <div className="w-full md:w-1/2 bg-white p-0 rounded-lg border border-gray-200 shadow-sm">
+              <div className="w-full bg-white p-6 rounded-lg">
                 <h1 className="text-3xl font-semibold mb-4">Order Summary</h1>
                 <div className="mt-6">
-                  <h3 className="font-semibold text-lg">Your Order</h3>
-                  <div className="border-t mt-2 pt-2">
-                    <p>Product Name: Sample Product</p>
-                    <p>Quantity: 1</p>
-                    <p>Price: ₹1,499</p>
-                    <p>Total: ₹1,499</p>
+                  <h3 className="font-semibold text-xl mb-2 flex items-center">
+                    <span>Your Order</span>
+                    <span className="ml-2 bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                      {cart.length} {cart.length === 1 ? 'item' : 'items'}
+                    </span>
+                  </h3>
+                  
+                  {/* Cart Items - Scrollable with enhanced styling */}
+                  <div className="border border-gray-200 rounded-lg mt-2 bg-gray-50 shadow-sm">
+                    {cart.length === 0 ? (
+                      <div className="p-8 text-center">
+                        <div className="text-gray-400 text-5xl mb-4">🛒</div>
+                        <p className="text-gray-500">Your cart is empty</p>
+                        <button className="mt-4 text-blue-600 border border-blue-600 rounded-full px-4 py-2 text-sm hover:bg-blue-50 transition-colors">
+                          Continue Shopping
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="max-h-72 overflow-y-auto pr-1 pl-2">
+                        {cart.map((item) => (
+                          <div 
+                            key={item.id} 
+                            className="py-4 px-3 border border-gray-200 rounded-md my-2 hover:bg-white transition-colors relative"
+                          >
+                            <div className="flex space-x-3">
+                              <div className="flex-shrink-0">
+                                <img
+                                  src={item.image || "/api/placeholder/80/80"}
+                                  alt={item.name}
+                                  className="h-16 w-16 object-cover rounded-md border border-gray-200 shadow-sm"
+                                />
+                              </div>
+                              <div className="flex-grow pr-8">
+                                <div className="flex justify-between">
+                                  <h4 className="font-medium text-gray-800 line-clamp-2">
+                                    {item.name}
+                                  </h4>
+                                  <div className="flex-shrink-0 text-right">
+                                    <p className="font-bold text-black">
+                                      ₹{Number(item.price).toFixed(2)}
+                                    </p>
+                                  </div>
+                                </div>
+                                <div className="flex justify-between items-end mt-2">
+                                  <div className="flex items-center bg-gray-100 rounded-md px-2">
+                                    <span className="text-xs text-gray-600 mr-1">Qty:</span>
+                                    <span className="font-medium">{item.quantity}</span>
+                                  </div>
+                                  <div className="text-right">
+                                    <p className="text-sm font-medium text-gray-700">
+                                      ₹{(item.price * item.quantity).toFixed(2)}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              {/* Remove button */}
+                              <button 
+                                onClick={() => removeFromCart(item.id)}
+                                className="absolute top-2 right-2 text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded-full transition-colors"
+                                aria-label="Remove item"
+                              >
+                                <TrashIcon className="h-5 w-5" />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
+                  
+                  {/* Order Summary Totals */}
+                  {cart.length > 0 && (
+                    <div className="mt-3 bg-gray-50 p-3 rounded-lg border border-gray-200 shadow-sm">
+                      <div className="flex justify-between text-gray-600 text-sm mb-2">
+                        <span>Items ({cart.reduce((sum, item) => sum + item.quantity, 0)}):</span>
+                        <span>₹{cartTotal.toFixed(2)}</span>
+                      </div>
+                      {isApplied && (
+                        <div className="flex justify-between text-green-600 text-sm">
+                          <span>15% Discount:</span>
+                          <span>-₹{(cartTotal * 0.15).toFixed(2)}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 <div className="border-t border-b py-2 mt-1 text-center">
                   <p className="text-xl text-black-700">
-                    Earn coin <span className="font-bold">14</span> Kapiva Coins
+                    Earn coin <span className="font-bold">{Math.floor(cartTotal * 0.01)}</span> Kapiva Coins
                   </p>
                   <p className="text-2xl font-bold text-green-600">coin</p>
                   <p className="text-sm text-gray-600">
@@ -337,7 +430,14 @@ const Checkout = () => {
                 </div>
 
                 <div className="mt-6 space-y-4">
-                  <h3 className="text-lg font-semibold">Coupons</h3>
+                  <h3 className="text-lg font-semibold flex items-center justify-between">
+                    <span>Coupons</span>
+                    {isApplied && (
+                      <span className="text-sm bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                        Saved ₹{(cartTotal * 0.15).toFixed(2)}
+                      </span>
+                    )}
+                  </h3>
                   <p className="text-sm text-gray-600">
                     (Not applicable on Free Gift)
                   </p>
@@ -357,35 +457,38 @@ const Checkout = () => {
                         setAppliedCoupon(e.target.value);
                         setIsApplied(false);
                       }}
-                      className="flex-1 p-2 border rounded-md"
+                      className={`flex-1 p-2 border rounded-md ${isApplied ? 'bg-green-50 border-green-200' : ''}`}
                       readOnly={isApplied}
                     />
                     <button
                       className={`px-4 rounded-md ${
-                        isApplied ? "bg-red-500" : "bg-yellow-500"
-                      } text-white`}
+                        isApplied ? "bg-red-500 hover:bg-red-600" : "bg-yellow-500 hover:bg-yellow-600"
+                      } text-white transition-colors`}
                       onClick={handleApply}
                     >
                       {isApplied ? "Remove Offer" : "Apply"}
                     </button>
                   </div>
 
-                  <div className="flex mt-4 rounded-md overflow-hidden shadow">
-                    <div className="w-2/7 bg-gray-400 flex items-center justify-center p-4">
-                      <p className="text-xl font-bold text-white">15% Off</p>
+                  <div className="flex mt-4 rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                    <div className="w-1/4 bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center p-4">
+                      <div className="text-center">
+                        <p className="text-xl font-bold text-white">15%</p>
+                        <p className="text-xs text-white font-semibold">OFF</p>
+                      </div>
                     </div>
-                    <div className="w-3/5 h-26 bg-white p-4">
-                      <p className="text-sm mt-3 whitespace-nowrap">
+                    <div className="w-3/4 bg-white p-4">
+                      <p className="text-sm mt-1">
                         <span className="text-lg font-bold">PAYDAY15:</span> Up
                         to 15% off - Add more, Save more
                       </p>
-                      <div className="flex justify-center mt-2">
-                        <p
-                          className="text-yellow-600 font-medium cursor-pointer"
+                      <div className="flex justify-center mt-3">
+                        <button
+                          className="text-yellow-600 font-medium hover:text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-1 rounded-full text-sm transition-colors"
                           onClick={handleTapToApply}
                         >
                           TAP TO APPLY
-                        </p>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -394,17 +497,22 @@ const Checkout = () => {
                 {/* Price Summary Section (With Smooth Opening/Closing) */}
                 <div className="mt-8">
                   <div
-                    className="flex items-center justify-between cursor-pointer"
+                    className="flex items-center justify-between cursor-pointer bg-gray-50 p-3 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors"
                     onClick={() => setShowPriceDetails(!showPriceDetails)}
                   >
-                    <h3 className="text-3xl font-semibold">Price Summary</h3>
-                    <i
-                      className={`text-3xl transition-transform duration-300 ${
-                        showPriceDetails
-                          ? "ri-arrow-down-s-line"
-                          : "ri-arrow-up-s-line"
-                      }`}
-                    ></i>
+                    <h3 className="text-xl font-semibold">Price Summary</h3>
+                    <div className="flex items-center">
+                      <span className="mr-3 font-medium">₹{grandTotal.toFixed(2)}</span>
+                      <svg 
+                        className={`w-5 h-5 transition-transform duration-300 ${showPriceDetails ? 'rotate-180' : ''}`} 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24" 
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </div>
                   </div>
 
                   <motion.div
@@ -415,55 +523,55 @@ const Checkout = () => {
                       paddingTop: showPriceDetails ? "1rem" : 0,
                       paddingBottom: showPriceDetails ? "1rem" : 0,
                     }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.3 }}
                     style={{ overflow: "hidden" }}
                   >
                     {showPriceDetails && (
-                      <ul className="space-y-2 mt-4">
-                        <li className="flex justify-between">
-                          <span>Total MRP:</span>
-                          <span>₹1,499.00</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span>Discount on MRP:</span>
-                          <span>- ₹500.00</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span>Coupon Discount:</span>
-                          <span>- ₹0.00</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span>Online Payment Discount:</span>
-                          <span>- ₹49.95</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span>Shipping (Free Above Rs.699):</span>
-                          <span>₹0.00</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span>GST (Inclusive):</span>
-                          <span>₹48.00</span>
-                        </li>
-                      </ul>
+                      <div className="bg-white rounded-lg border border-gray-200 mt-3 p-4 shadow-sm">
+                        <ul className="space-y-3">
+                          <li className="flex justify-between">
+                            <span className="text-gray-600">Total MRP:</span>
+                            <span>₹{cartTotal.toFixed(2)}</span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span className="text-gray-600">Discount on MRP:</span>
+                            <span className="text-green-600">- ₹0.00</span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span className="text-gray-600">Coupon Discount:</span>
+                            <span className="text-green-600">- ₹{couponDiscount.toFixed(2)}</span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span className="text-gray-600">Online Payment Discount:</span>
+                            <span className="text-green-600">- ₹{onlinePaymentDiscount.toFixed(2)}</span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span className="text-gray-600">Shipping (Free Above Rs.699):</span>
+                            <span>{shippingCost > 0 ? `₹${shippingCost.toFixed(2)}` : 'FREE'}</span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span className="text-gray-600">GST (Inclusive):</span>
+                            <span>₹{gstAmount.toFixed(2)}</span>
+                          </li>
+                        </ul>
+                      </div>
                     )}
                   </motion.div>
 
-                  <div className="mt-8">
-                    <div className="flex justify-between font-bold mt-4 border-t pt-4">
+                  <div className="mt-6">
+                    <div className="flex justify-between font-bold py-4 border-t border-b border-gray-200 text-lg">
                       <span>Grand Total:</span>
-                      <span>₹949.05</span>
+                      <span>₹{grandTotal.toFixed(2)}</span>
                     </div>
 
-                    <div className="mt-4 flex justify-center items-center relative space-x-0 pb-30 sm:pb-0">
-                      <img
-                        src="./src/assets/ferr.jpg"
-                        alt="Savings Logo"
-                        className="h-[48px] w-[48px] rounded-full z-10 -mr-4"
-                      />
-                      <div className="bg-amber-100 rounded-tr-lg rounded-br-lg px-4 py-2 w-[310px] sm:w-[340px] pl-5 relative z-0 whitespace-nowrap overflow-hidden text-ellipsis">
-                        <span className="text-sm sm:text-base text-gray-800">
-                          You’ll <span className="font-bold">save ₹14.95</span>{" "}
-                          on this order
+                    <div className="mt-4 flex justify-center items-center relative space-x-0">
+                      <div className="absolute -left-2 flex items-center justify-center w-14 h-14 bg-yellow-100 rounded-full border-4 border-white shadow-lg">
+                        <span className="text-yellow-600 text-xl font-bold">₹</span>
+                      </div>
+                      <div className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-lg pl-14 pr-4 py-3 w-full shadow-sm border border-amber-200">
+                        <span className="text-base text-gray-800 font-medium">
+                          You'll <span className="font-bold text-green-700">save ₹{totalSavings.toFixed(2)}</span>{" "}
+                          on this order!
                         </span>
                       </div>
                     </div>
