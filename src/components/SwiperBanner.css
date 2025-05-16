@@ -1,26 +1,36 @@
-/* Targeting the left and right navigation arrows */
-.swiper-button-next, .swiper-button-prev {
-  width: 30px; /* Set width */
-  height: 30px; /* Set height */
-  background-size: 20px; /* Control icon size */
-  color: #000; /* Change color to suit your design */
+.mySwiper {
+  width: 100%;
+  height: 100%;
 }
 
-/* You can change the arrow style if needed (e.g., add a custom icon) */
-.swiper-button-next::after, .swiper-button-prev::after {
-  font-size: 18px; /* Adjust the arrow size */
-  color: #000; /* Adjust the arrow color */
+.swiper {
+  width: 100%;
+  height: 100%;
 }
 
-/* Optional: position the arrows inside the swiper */
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Navigation arrows */
 .swiper-button-next, .swiper-button-prev {
+  width: 30px;
+  height: 30px;
+  background-size: 20px;
+  color: #000;
   top: 55%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.5); /* Optional: background color */
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
 }
 
-/* Optional: add hover effect */
+.swiper-button-next::after, .swiper-button-prev::after {
+  font-size: 18px;
+  color: #000;
+}
+
 .swiper-button-next:hover, .swiper-button-prev:hover {
-  background-color: rgba(255, 255, 255, 0.8); /* On hover */
+  background-color: rgba(255, 255, 255, 0.8);
 }

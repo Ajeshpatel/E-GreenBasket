@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
@@ -217,11 +218,18 @@ const ProductsCard = () => {
 
     return (
       <div className="mb-12">
+        {/* Full-width category name div */}
+        <div className="w-full bg-indigo-100 rounded-lg p-5 mb-4">
+          <div className="flex items-center justify-between"> 
+            <span className="text-2xl mr-2">{icon}</span>
+            <h2 className="text-2xl font-bold text-indigo-700">{title}</h2>
+            <span className="text-3xl mr-2">{icon}</span>
+          </div>
+        </div>
+
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center">
-            <span className="text-2xl mr-2">{icon}</span>
-            <h2 className="text-xl font-bold text-gray-900">{title}</h2>
-            <span className="ml-3 text-sm text-gray-500">
+            <span className="text-sm text-gray-500">
               ({products.length} products)
             </span>
           </div>
@@ -247,7 +255,7 @@ const ProductsCard = () => {
         </div>
 
         {isExpanded ? (
-          // Grid View - Always 2 products per row even on mobile
+          // Grid View - 2 products per row on mobile, 4 on desktop
           <div className="grid grid-cols-2 gap-4 md:gap-8 md:grid-cols-4">
             {products.map((product) => (
               <ProductCard
@@ -285,20 +293,33 @@ const ProductsCard = () => {
       selectedCategory === "all"
         ? allProducts
         : productsByCategory[selectedCategory] || [];
+    
+    // Find category details
+    const categoryDetails = categories.find(c => c.slug === selectedCategory);
 
     return (
       <div>
+        {/* Full-width category name div */}
+        {selectedCategory !== "all" && categoryDetails && (
+          <div className="w-full bg-indigo-100 rounded-lg p-5 mb-6">
+            <div className="flex items-center justify-between">
+              <span className="text-2xl mr-2">{categoryDetails.icon}</span>
+              <h2 className="text-2xl font-bold text-indigo-700">{categoryDetails.name}</h2>
+              <span className="text-3xl mr-2">{categoryDetails.icon}</span>
+            </div>
+          </div>
+        )}
+
         {/* Product Count and Back Button */}
         <div className="flex justify-between items-center mb-6">
           <div className="text-sm text-gray-600">
             Showing <span className="font-medium">{products.length}</span>{" "}
             {products.length === 1 ? "product" : "products"}
-            {selectedCategory !== "all" && (
+            {selectedCategory !== "all" && categoryDetails && (
               <span className="ml-2">
                 in{" "}
                 <span className="font-medium text-indigo-600">
-                  {categories.find((c) => c.slug === selectedCategory)?.name ||
-                    selectedCategory}
+                  {categoryDetails.name}
                 </span>
               </span>
             )}
@@ -315,8 +336,8 @@ const ProductsCard = () => {
           </div>
         </div>
 
-        {/* Product grid */}
-        <div className="grid grid-cols-2 gap-4 md:gap-8">
+        {/* Product grid - 2 columns on mobile, 4 on desktop */}
+        <div className="grid grid-cols-2 gap-4 md:gap-8 md:grid-cols-4">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} isGridView={true} />
           ))}
@@ -414,7 +435,9 @@ const ProductsCard = () => {
                     : "border-gray-200 hover:border-indigo-300"
                 }`}
               >
-                <div className="bg-indigo-100 p-3 rounded-full mb-2 text-2xl">
+
+                {/* // Category icon and name----------------------------------------------------------------------------------------- */}
+                <div className="bg-indigo-200 p-3 rounded-full mb-2 text-2xl">
                   {category.icon}
                 </div>
                 <span className="text-sm font-medium text-gray-700">
