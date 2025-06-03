@@ -227,61 +227,63 @@ const ShopPage = () => {
               </div>
             )}
 
-            {/* Product grid */}
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {/* Product grid - UPDATED: Keep button size consistent, adjust other elements */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8 lg:grid-cols-3 xl:grid-cols-4">
               {!isFiltering && filteredProducts.map((product) => (
                 <div 
                   key={product.id} 
-                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  className="bg-white rounded-lg sm:rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
                 >
                   <Link to={`/product/${product.id}`} className="block group">
-                    <div className="relative h-60 w-full overflow-hidden">
+                    <div className="relative h-32 sm:h-48 md:h-60 w-full overflow-hidden">
                       <img
                         src={product.image}
                         alt={product.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       {/* Product Badges */}
-                      <div className="absolute top-3 left-3 flex flex-col space-y-2">
+                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col space-y-1 sm:space-y-2">
                         {product.isNew && (
-                          <span className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                          <span className="bg-green-500 text-white text-xs font-bold px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full">
                             NEW
                           </span>
                         )}
                         {product.isFeatured && (
-                          <span className="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center">
-                            <StarIcon className="h-3 w-3 mr-1" /> FEATURED
+                          <span className="bg-yellow-500 text-white text-xs font-bold px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full flex items-center">
+                            <StarIcon className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" /> 
+                            <span className="hidden sm:inline">FEATURED</span>
+                            <span className="sm:hidden">★</span>
                           </span>
                         )}
                       </div>
                       {!product.inStock && (
                         <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
-                          <span className="text-white font-bold bg-red-600 px-3 py-1 rounded-lg">
+                          <span className="text-white font-bold bg-red-600 px-2 py-1 sm:px-3 sm:py-1 rounded text-xs sm:text-sm">
                             SOLD OUT
                           </span>
                         </div>
                       )}
-                      <div className="absolute bottom-3 right-3 bg-white rounded-full p-2 shadow-lg">
+                      <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-white rounded-full p-1.5 sm:p-2 shadow-lg">
                         <div className="flex items-center">
-                          <StarIcon className="h-4 w-4 text-yellow-400" />
-                          <span className="text-xs font-bold ml-1">{product.rating}</span>
+                          <StarIcon className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-400" />
+                          <span className="text-xs font-bold ml-0.5 sm:ml-1">{product.rating}</span>
                         </div>
                       </div>
                     </div>
                   </Link>
                   
-                  <div className="p-5">
+                  <div className="p-2 sm:p-4 md:p-5">
                     <Link to={`/product/${product.id}`} className="block">
-                      <h3 className="text-lg font-bold text-gray-900 mb-1 hover:text-indigo-600 transition-colors line-clamp-2">
+                      <h3 className="text-xs sm:text-base md:text-lg font-bold text-gray-900 mb-1 hover:text-indigo-600 transition-colors line-clamp-2">
                         {product.name}
                       </h3>
-                      <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+                      <p className="text-xs sm:text-sm text-gray-500 mt-1 line-clamp-2 hidden sm:block">
                         {product.description}
                       </p>
                     </Link>
                     
-                    <div className="flex justify-between items-center mt-4">
-                      <span className="text-xl font-extrabold text-gray-900">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2 sm:mt-4 space-y-2 sm:space-y-0">
+                      <span className="text-sm sm:text-xl font-extrabold text-gray-900">
                         ${product.price.toFixed(2)}
                       </span>
                       
@@ -291,7 +293,7 @@ const ShopPage = () => {
                             e.preventDefault();
                             addToCart(product);
                           }}
-                          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center"
+                          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
@@ -299,7 +301,7 @@ const ShopPage = () => {
                           Add
                         </button>
                       ) : (
-                        <span className="text-sm text-gray-500 font-medium">Out of stock</span>
+                        <span className="text-xs sm:text-sm text-gray-500 font-medium text-center sm:text-left">Out of stock</span>
                       )}
                     </div>
                   </div>
