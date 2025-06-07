@@ -60,14 +60,18 @@ const Header = ({ onCartClick }) => {
   };
 
   return (
-    <header className={`sticky top-0 z-50 ${scrolled ? 'bg-white shadow-lg' : 'bg-white shadow-md'}`}>
+    <header
+      className={`sticky top-0 z-50 ${
+        scrolled ? "bg-white shadow-lg" : "bg-white shadow-md"
+      }`}
+    >
       <div className="container mx-auto px-4">
         {/* Top Bar - Always Visible */}
         <div className="flex items-center justify-between h-16">
           {/* Logo - Left */}
           <Link to="/" className="flex-shrink-0">
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              ShopEase
+              E-GreenBasket
             </span>
           </Link>
 
@@ -85,21 +89,33 @@ const Header = ({ onCartClick }) => {
               </div>
             ) : (
               <nav className="flex items-center space-x-1">
-                <Link 
-                  to="/" 
-                  className={`px-4 py-2 rounded-md font-medium ${location.pathname === '/' ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-900'}`}
+                <Link
+                  to="/"
+                  className={`px-4 py-2 rounded-md font-medium ${
+                    location.pathname === "/"
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
                 >
                   Home
                 </Link>
-                <Link 
-                  to="/shop" 
-                  className={`px-4 py-2 rounded-md font-medium ${location.pathname.startsWith('/shop') ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-900'}`}
+                <Link
+                  to="/shop"
+                  className={`px-4 py-2 rounded-md font-medium ${
+                    location.pathname.startsWith("/shop")
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
                 >
                   Shop
                 </Link>
-                <Link 
-                  to="/about" 
-                  className={`px-4 py-2 rounded-md font-medium ${location.pathname === '/about' ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-900'}`}
+                <Link
+                  to="/about"
+                  className={`px-4 py-2 rounded-md font-medium ${
+                    location.pathname === "/about"
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
                 >
                   About
                 </Link>
@@ -110,7 +126,7 @@ const Header = ({ onCartClick }) => {
           {/* Right Icons - Always Visible */}
           <div className="flex items-center space-x-4">
             {/* On desktop, show search toggle */}
-            <button 
+            <button
               onClick={() => setSearchOpen(!searchOpen)}
               className="hidden md:block p-2 text-gray-600 hover:text-gray-900"
               aria-label="Search"
@@ -123,7 +139,7 @@ const Header = ({ onCartClick }) => {
             </button>
 
             {/* Mobile Search Button (only visible on mobile) */}
-            <button 
+            <button
               onClick={() => setSearchOpen(!searchOpen)}
               className="md:hidden p-2 text-gray-600 hover:text-gray-900"
               aria-label="Search"
@@ -134,7 +150,7 @@ const Header = ({ onCartClick }) => {
                 <MagnifyingGlassIcon className="h-5 w-5" />
               )}
             </button>
-            
+
             {/* Cart Icon */}
             <button
               onClick={onCartClick}
@@ -168,21 +184,33 @@ const Header = ({ onCartClick }) => {
         {mobileMenuOpen && (
           <div className="md:hidden pb-3">
             <nav className="flex flex-col space-y-2">
-              <Link 
-                to="/" 
-                className={`px-4 py-2 rounded-md font-medium ${location.pathname === '/' ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-900'}`}
+              <Link
+                to="/"
+                className={`px-4 py-2 rounded-md font-medium ${
+                  location.pathname === "/"
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
               >
                 Home
               </Link>
-              <Link 
-                to="/shop" 
-                className={`px-4 py-2 rounded-md font-medium ${location.pathname.startsWith('/shop') ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-900'}`}
+              <Link
+                to="/shop"
+                className={`px-4 py-2 rounded-md font-medium ${
+                  location.pathname.startsWith("/shop")
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
               >
                 Shop
               </Link>
-              <Link 
-                to="/about" 
-                className={`px-4 py-2 rounded-md font-medium ${location.pathname === '/about' ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-900'}`}
+              <Link
+                to="/about"
+                className={`px-4 py-2 rounded-md font-medium ${
+                  location.pathname === "/about"
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
               >
                 About
               </Link>

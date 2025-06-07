@@ -21,10 +21,10 @@ const ContactPage = () => {
 
     emailjs
       .sendForm(
-        'service_t73tyqj',          // Replace with your service ID
-        'template_sr17bvn',         // Replace with your template ID
+        'service_fkk9haf',          // Replace with your service ID Changed
+        'template_toex5lf',         // Replace with your template ID changed
         form.current,
-        'Oe2IMyhKtsKTdUAqc'         // Replace with your public key
+        'qdy5hOQUalAT4RMGX'         // Replace with your public key
       )
       .then(
         (result) => {
